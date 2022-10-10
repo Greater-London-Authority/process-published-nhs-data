@@ -1,18 +1,15 @@
-dirs <- list(outputs = "data/outputs/",
-             raw = "data/raw/",
-             intermediate = "data/intermediate/",
-             processed = "data/processed/",
-             plots = "data/outputs/plots/")
 
-fpaths <- list(
-  consolidated_lad_res_data = paste0(dirs$processed, "gp_lad_res.rds"),
-  prop_res = paste0(dirs$processed, "gp_prop_res.rds"),
-  output_sya_res_data = paste0(dirs$gp_counts_outputs, "gp_sya_lad21.rds"),
-  ldn_gp_output_rds = paste0(dirs$gp_counts_outputs, "gp_sya_ldn.rds"),
-  ldn_gp_output_csv = paste0(dirs$gp_counts_outputs, "gp_sya_ldn.csv"),
-  cohort_chg_sya = paste0(dirs$gp_counts_outputs, "cohort_change_sya.rds"),
-  cohort_chg_age_bands = paste0(dirs$gp_counts_outputs, "cohort_change_age_bands.rds"),
-  lookup_script = "R/get_lookups_2021.R",
-  nonstandard_place_names = "R/nonstandard_page_names.R"
-  )
-
+fpath <- list(
+  raw_nhs_month = "data/raw/downloaded/",
+  res_by_lad = "data/intermediate/gp_lad_res.rds",
+  gp_sya_month = "data/intermediate/gp_sya/",
+  gp_res_month = "data/intermediate/gp_res/",
+  gp_sya_res_month = "data/processed/gp_res_sya/",
+  output_gp_sya_lad = "outputs/gp_sya_lad.rds",
+  output_gp_sya_rgn = "outputs/gp_sya_rgn.rds",
+  output_gp_sya_itl = "outputs/gp_sya_itl.rds",
+  lookup_lsoa_lad = "data/processed/lookups/lookup_lsoa_lad.rds",
+  lookup_lad_rgn = "data/processed/lookups/lookup_lad_rgn.rds",
+  lookup_lad_itl = "data/processed/lookups/lookup_lad_itl.rds",
+  nonstandard_page_names = "R/nonstandard_page_names.R"
+)
