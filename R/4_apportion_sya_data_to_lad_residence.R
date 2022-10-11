@@ -2,6 +2,8 @@ library(tidyverse)
 source("filepaths.R")
 source("R/functions/calculate_gp_res_props.R")
 
+if(!dir.exists(fpath$gp_sya_res_month)) dir.create(fpath$gp_sya_res_month, recursive = TRUE)
+
 # get the proportional distributions by LAD of residence for each practice and sex ----
 # interpolate values for months without data
 
@@ -15,8 +17,6 @@ sya_dates <- as.Date(paste0(sya_yyyy_mm, "_01"), "%Y_%m_%d")
 sel_dates <- sya_dates[sya_dates <= last_res_date]
 
 prop_res <- calculate_gp_res_props(gp_res, sel_dates)
-
-# sya_dates <- substr(list.files(fpath$gp_sya_month), 1, 7)
 
 #apply LAD residence proportions to SYA data ----
 for(sel_dt in sya_yyyy_mm){

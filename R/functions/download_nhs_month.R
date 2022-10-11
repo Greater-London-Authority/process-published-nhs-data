@@ -25,7 +25,7 @@ download_nhs_month <- function(dt_yyyy_mm,
 
   pg_nm_replace <- c("<expected page name>" = "<actual page name>")
 
-  source(fp_non_standard_page_names)
+  if(file.exists(fp_non_standard_page_names)) source(fp_non_standard_page_names)
 
   if(pg_nm %in% names(pg_nm_replace)) pg_nm <- pg_nm_replace[pg_nm]
 

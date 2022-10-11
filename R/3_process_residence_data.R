@@ -1,6 +1,8 @@
 source("filepaths.R")
 source("R/functions/get_gp_res_inputs.R")
 
+if(!dir.exists(fpath$gp_res_month)) dir.create(fpath$gp_res_month, recursive = TRUE)
+
 #Run for Jan, April, July, and October folders in dir_inputs -----
 #these are currently the only months where residence data is published
 fldr_dates <- list.dirs(fpath$raw_nhs_month,
@@ -30,6 +32,4 @@ if(length(sel_dates > 0)){
             paste0(fpath$gp_res_month, sel_dt, "_gp_res.rds"))
 
   }
-  rm(data_sel_dt, sel_dt, e_date)
 }
-rm(fldr_dates, existing_dates, sel_dates)

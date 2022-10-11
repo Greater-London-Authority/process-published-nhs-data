@@ -2,6 +2,8 @@ source("filepaths.R")
 source("R/functions/download_nhs_month.R")
 source("R/functions/extract_delete_zips.R")
 
+if(!dir.exists(fpath$raw_nhs_month)) dir.create(fpath$raw_nhs_month, recursive = TRUE)
+
 # fetch data for any months in the specified period that hasn't already been downloaded
 
 dt_start <- as.Date("2015-01-01")

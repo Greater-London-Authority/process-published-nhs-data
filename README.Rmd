@@ -18,22 +18,38 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of process published nhs data is to ...
+Since 2012, the City Intelligence Unit's Demography Team made has use of extracts of patient register data as part of its ongoing analysis of population change.  These extracts were provided under license by the NHS and consisted of aggregate counts of persons registered with a GP by age, sex, and area of residence.  
 
-## Installation
+In recent years, NHS Digital has regularly published data about the numbers of persons present on GP patient registers. Two datasets are available: 
 
-You can install the released version of process published nhs data from [CRAN](https://CRAN.R-project.org) with:
+1. Counts of patients by practice attended x sex x LSOA of residence - published quarterly
 
-``` r
-install.packages("process published nhs data")
+2. Counts of patients by practice attended x sex x age - published monthly
+
+The purpose of the code in this repository is to take these published data and consolidate them into a time series of patient **counts by sex x age x Local Authority District of residence** that can be used as the basis for subsequent demographic analysis. Modelled counts of patients by age, sex, and local authority of residence are created by a simple process of apportioning the data for each GP practice in (2) by the distribution for each practice in (1).
+
+The underlying data are published on the [NHS Digital website](https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice). Each month's extracts are published on their own pages, which usually follow the naming convention:
+
 ```
+.../patients-registered-at-a-gp-practice/<month>-<year>
+```
+
+The data is published in csv files in a format that conforms to the tidy data convention. There are minor inconsistencies in the formatting, naming, and location of extracts published over the years, which this code aims to workaround.
+
+
+
+
+## Usage
+
+
+
 
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(process published nhs data)
+
 ## basic example code
 ```
 

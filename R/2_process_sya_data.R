@@ -1,6 +1,8 @@
 source("filepaths.R")
 source("R/functions/get_gp_sya_inputs.R")
 
+if(!dir.exists(fpath$gp_sya_month)) dir.create(fpath$gp_sya_month, recursive = TRUE)
+
 #run for all folders with dates that don't already have a processed file
 fldr_dates <- list.dirs(fpath$raw_nhs_month, full.names = FALSE, recursive = FALSE)
 existing_dates <- substr(list.files(fpath$gp_sya_month), 1, 7)
@@ -20,6 +22,4 @@ if(length(sel_dates > 0)){
     saveRDS(data_sel_dt,
             paste0(fpath$gp_sya_month, sel_dt, "_gp_sya.rds"))
   }
-  rm(data_sel_dt, sel_dt, e_date)
 }
-rm(fldr_dates, existing_dates, sel_dates)
