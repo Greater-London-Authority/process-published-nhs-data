@@ -7,7 +7,7 @@ if(!dir.exists(fpath$raw_nhs_month)) dir.create(fpath$raw_nhs_month, recursive =
 
 # fetch data for any months in the specified period that hasn't already been downloaded
 
-dt_start <- as.Date("2016-01-01")
+dt_start <- as.Date("2017-03-01")
 dt_end <- Sys.Date()
 
 # pages for months that have non-standard names. required format:
