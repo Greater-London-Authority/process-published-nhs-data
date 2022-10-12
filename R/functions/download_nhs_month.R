@@ -10,7 +10,7 @@ download_nhs_month <- function(dt_yyyy_mm,
                                dir_save,
                                base_url = "https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/",
                                link_pattern = "gp-reg-pat-prac-sing-age-female|gp-reg-pat-prac-sing-age-male|gp-reg-pat-prac-lsoa-male|gp-reg-pat-prac-lsoa-female|gp-reg-pat-prac-lsoa-all-females-males",
-                               fp_non_standard_page_names = "lookups/nonstandard_page_names.R"){
+                               pg_nm_replace = c("<expected page name>" = "<actual page name>")){
 
   # data for most months is published on pages that have a simple naming convention
   # e.g. "<base_url>/april-2018"
@@ -21,11 +21,6 @@ download_nhs_month <- function(dt_yyyy_mm,
   pg_nm <- paste0(mnth, "-", yr)
 
   # pages for some months have non-standard names
-  #TODO find a better way of doing this
-
-  pg_nm_replace <- c("<expected page name>" = "<actual page name>")
-
-  if(file.exists(fp_non_standard_page_names)) source(fp_non_standard_page_names)
 
   if(pg_nm %in% names(pg_nm_replace)) pg_nm <- pg_nm_replace[pg_nm]
 
