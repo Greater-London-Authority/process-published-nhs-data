@@ -37,10 +37,14 @@ follow the naming convention:
 
     .../patients-registered-at-a-gp-practice/<month>-<year>
 
-The data is published in csv files in a format that conforms to the tidy
-data convention. There are minor inconsistencies in the formatting,
-naming, and location of extracts published over the years which this
-code aims to workaround.
+The data is published in csv files in a format that since April 2017
+conforms to the tidy data convention. There are minor inconsistencies in
+the formatting, naming, and location of extracts published subsequently
+which this code aims to workaround.
+
+Files published prior to April 2017 are formatted differently and the
+existing process will need to be modified if they are to be
+accommodated.
 
 ## Usage
 
