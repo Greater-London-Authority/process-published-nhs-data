@@ -10,7 +10,7 @@ download_nhs_month <- function(dt_yyyy_mm,
                                dir_save,
                                base_url = "https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/",
                                link_pattern = "gp-reg-pat-prac-sing-age-female|gp-reg-pat-prac-sing-age-male|gp-reg-pat-prac-lsoa-male|gp-reg-pat-prac-lsoa-female|gp-reg-pat-prac-lsoa-all-females-males",
-                               fp_non_standard_page_names = "nonstandard_page_names.R"){
+                               fp_non_standard_page_names = "lookups/nonstandard_page_names.R"){
 
   # data for most months is published on pages that have a simple naming convention
   # e.g. "<base_url>/april-2018"

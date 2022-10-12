@@ -1,5 +1,9 @@
-source("filepaths.R")
 source("R/functions/get_gp_sya_inputs.R")
+
+fpath <- list(
+  raw_nhs_month = "data/raw/",
+  gp_sya_month = "data/intermediate/gp_sya/"
+)
 
 if(!dir.exists(fpath$gp_sya_month)) dir.create(fpath$gp_sya_month, recursive = TRUE)
 

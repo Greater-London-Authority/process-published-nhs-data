@@ -1,6 +1,11 @@
 library(tidyverse)
-source("filepaths.R")
 source("R/functions/calculate_gp_res_props.R")
+
+fpath <- list(
+  gp_sya_month = "data/intermediate/gp_sya/",
+  gp_res_month = "data/intermediate/gp_res/",
+  gp_sya_res_month = "data/intermediate/gp_res_sya/"
+)
 
 if(!dir.exists(fpath$gp_sya_res_month)) dir.create(fpath$gp_sya_res_month, recursive = TRUE)
 

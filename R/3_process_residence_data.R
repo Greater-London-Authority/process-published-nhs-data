@@ -1,5 +1,10 @@
-source("filepaths.R")
 source("R/functions/get_gp_res_inputs.R")
+
+fpath <- list(
+  raw_nhs_month = "data/raw/",
+  gp_res_month = "data/intermediate/gp_res/",
+  lookup_lsoa_lad = "lookups/lookup_lsoa_lad.rds"
+)
 
 if(!dir.exists(fpath$gp_res_month)) dir.create(fpath$gp_res_month, recursive = TRUE)
 
@@ -14,7 +19,6 @@ existing_dates <- substr(list.files(fpath$gp_res_month), 1, 7)
 sel_dates <- fldr_dates[!fldr_dates %in% existing_dates]
 
 lookup_lsoa_lad <- readRDS(fpath$lookup_lsoa_lad)
-
 
 if(length(sel_dates > 0)){
 

@@ -1,12 +1,13 @@
-source("filepaths.R")
 source("R/functions/download_nhs_month.R")
 source("R/functions/extract_delete_zips.R")
+
+fpath <- list(raw_nhs_month = "data/raw/")
 
 if(!dir.exists(fpath$raw_nhs_month)) dir.create(fpath$raw_nhs_month, recursive = TRUE)
 
 # fetch data for any months in the specified period that hasn't already been downloaded
 
-dt_start <- as.Date("2015-01-01")
+dt_start <- as.Date("2017-01-01")
 dt_end <- Sys.Date()
 
 # sel_dates is a vector of all months between dt_start and dt_end for which folders don't exist
@@ -19,7 +20,12 @@ for(sel_dt in sel_dates){
 
   dir_save <- paste0(fpath$raw_nhs_month, sel_dt, "/")
 
-  download_nhs_month(sel_dt, dir_save)
+  download_nhs_month(sel_dt,
+                     dir_save,
+                     base_url = "https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/",
+                     link_pattern = "gp-reg-pat-prac-sing-age-female|gp-reg-pat-prac-sing-age-male|gp-reg-pat-prac-lsoa-male|gp-reg-pat-prac-lsoa-female|gp-reg-pat-prac-lsoa-all-females-males",
+                     fp_non_standard_page_names = "lookups/nonstandard_page_names.R")
+
   extract_delete_zips(sel_dt, dir_save)
 
 }
