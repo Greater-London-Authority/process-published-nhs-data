@@ -1,4 +1,4 @@
-library(tidyverse)
+library(dplyr)
 
 aggregate_to_region <- function(in_df, lookup) {
 

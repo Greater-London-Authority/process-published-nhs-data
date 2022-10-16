@@ -1,6 +1,7 @@
-library(tidyverse)
+library(dplyr)
+library(readr)
 
-get_gp_res_inputs <- function(dir_in,
+clean_gp_res_lsoa <- function(dir_in,
                               lookup_lsoa_lad,
                               e_date) {
 
@@ -23,8 +24,6 @@ get_gp_res_inputs <- function(dir_in,
            value = `Number of Patients`) %>%
     mutate(sex = tolower(sex)) %>%
     left_join(lookup_lsoa_lad, by = "LSOA11CD") %>%
-    group_by(practice_code, gss_code, gss_name, sex) %>%
-    summarise(value = sum(value), .groups = "drop") %>%
     mutate(extract_date = e_date)
 
   return(gp_res)

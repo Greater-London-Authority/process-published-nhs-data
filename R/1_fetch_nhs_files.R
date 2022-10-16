@@ -24,6 +24,8 @@ all_dates <- format(seq(dt_start, dt_end, by = "month"), "%Y_%m")
 fldr_dates <- list.dirs(fpath$raw_nhs_month, full.names = FALSE, recursive = FALSE)
 sel_dates <- all_dates[!all_dates %in% fldr_dates]
 
+message("Attempting to download any missing files for period ", dt_start, " to ", dt_end)
+
 for(sel_dt in sel_dates){
 
   dir_save <- paste0(fpath$raw_nhs_month, sel_dt, "/")
