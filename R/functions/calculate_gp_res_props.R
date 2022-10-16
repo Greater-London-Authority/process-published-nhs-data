@@ -1,4 +1,5 @@
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(zoo)
 # get the proportional distributions by LAD of residence for each practice and sex
 # first na.omit is used to remove the patients with missing residence info

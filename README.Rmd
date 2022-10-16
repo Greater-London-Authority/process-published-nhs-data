@@ -50,16 +50,20 @@ Downloads the published data files for individual months from the NHS Digital we
 
 * **2_process_sya_data.R**
 
-Cleans and standardises the format of data published by practice, age and sex, saving separate files for each month in 
+Cleans the raw data published by practice, age and sex, saving separate files for each month in 
 ```
-/data/processed/gp_sya/
+/data/intermediate/gp_sya_month/
 ```
 
 * **3_process_residence_data.R**
 
-Takes the raw data published by practice, sex and LSOA of residence; aggregates counts to local authority district of residence. Data for each month is saved in 
+Cleans the raw data published by practice, sex and LSOA of residence, saving separate files for each month in
 ```
-/data/processed/gp_res/
+/data/intermediate/gp_lsoa_month/
+```
+Also aggregates data to local authority district of residence, saving files in
+```
+/data/intermediate/gp_lad_month/
 ```
 
 * **4_apportion_sya_data_to_lad_residence.R**
@@ -70,12 +74,12 @@ As residence data is only published quarterly, proportions for intermediate mont
 
 The resulting outputs for each month are saved in 
 ```
-/data/processed/gp_res_sya/
+/data/intermediate/sya_lad_month/
 ```
 
 * **5_create_output_files.R**
 
-Combines local authority data for indidual months into a single file, then creates aggregations of this data for regions and ITL2 subregions. These outputs are saved in 
+Combines local authority data for individual months into a single file, then creates aggregations of this data for regions, ITL2 subregions, and England. These outputs are saved in 
 ```
 /data/processed/
 ```
