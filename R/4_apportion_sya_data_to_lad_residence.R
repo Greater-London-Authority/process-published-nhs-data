@@ -4,7 +4,8 @@ source("R/functions/calculate_gp_res_props.R")
 fpath <- list(
   gp_sya_month = "data/intermediate/gp_sya_month/",
   gp_lad_month = "data/intermediate/gp_lad_month/",
-  sya_lad_month = "data/intermediate/sya_lad_month/"
+  sya_lad_month = "data/intermediate/sya_lad_month/",
+  prop_res_lad = "data/intermediate/prop_res_lad.rds"
 )
 
 stub_gp_sya <- "_gp_sya.rds"
@@ -26,6 +27,8 @@ sel_dates <- sya_dates[sya_dates <= last_res_date]
 
 message("Calculating residence distributions for GP practices")
 prop_res <- calculate_gp_res_props(gp_res, sel_dates)
+
+saveRDS(prop_res, fpath$prop_res_lad)
 
 #apply LAD residence proportions to SYA data
 i <- 1
