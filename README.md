@@ -13,14 +13,14 @@ and consisted of aggregate counts of persons registered with a GP by
 age, sex, and area of residence.
 
 In recent years, NHS Digital has regularly published data about the
-numbers of persons present on GP patient registers. Two datasets are
-available:
+numbers of persons present on GP patient registers. Two main datasets of
+interest are available:
 
 1.  Counts of patients by practice attended x sex x LSOA of residence -
-    published quarterly
+    currently published quarterly
 
-2.  Counts of patients by practice attended x sex x age - published
-    monthly
+2.  Counts of patients by practice attended x sex x single year of age -
+    currently published monthly
 
 The purpose of the code in this repository is to take these published
 data and consolidate them into a time series of patient **counts by sex
@@ -37,14 +37,10 @@ follow the naming convention:
 
     .../patients-registered-at-a-gp-practice/<month>-<year>
 
-The data is published in csv files in a format that since April 2017
-conforms to the tidy data convention. There are minor inconsistencies in
-the formatting, naming, and location of extracts published subsequently
-which this code aims to workaround.
-
-Files published prior to April 2017 are formatted differently and the
-existing process will need to be modified if they are to be
-accommodated.
+The earliest available outputs in these series are for October 2014.
+Though all published as csv files, there are significant differences
+between the formats of outputs published prior to April 2017 and those
+published since.
 
 ## Usage
 

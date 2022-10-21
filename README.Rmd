@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 
 Since 2012, the City Intelligence Unit's Demography Team made has use of extracts of patient register data as part of its ongoing analysis of population change.  These extracts were provided under license by the NHS and consisted of aggregate counts of persons registered with a GP by age, sex, and area of residence.  
 
-In recent years, NHS Digital has regularly published data about the numbers of persons present on GP patient registers. Two datasets are available: 
+In recent years, NHS Digital has regularly published data about the numbers of persons present on GP patient registers. Two main datasets of interest are available: 
 
-1. Counts of patients by practice attended x sex x LSOA of residence - published quarterly
+1. Counts of patients by practice attended x sex x LSOA of residence - currently published quarterly
 
-2. Counts of patients by practice attended x sex x age - published monthly
+2. Counts of patients by practice attended x sex x single year of age - currently published monthly
 
 The purpose of the code in this repository is to take these published data and consolidate them into a time series of patient **counts by sex x age x Local Authority District of residence** that can be used as the basis for subsequent demographic analysis. Modelled counts of patients by age, sex, and local authority of residence are created by a simple process of apportioning the data for each GP practice in (2) by the distribution for each practice in (1).
 
@@ -32,10 +32,7 @@ The underlying data are published on the [NHS Digital website](https://digital.n
 ```
 .../patients-registered-at-a-gp-practice/<month>-<year>
 ```
-
-The data is published in csv files in a format that since April 2017 conforms to the tidy data convention. There are minor inconsistencies in the formatting, naming, and location of extracts published subsequently which this code aims to workaround.
-
-Files published prior to April 2017 are formatted differently and the existing process will need to be modified if they are to be accommodated. 
+The earliest available outputs in these series are for October 2014.  Though all published as csv files, there are significant differences between the formats of outputs published prior to April 2017 and those published since.
 
 ## Usage
 
