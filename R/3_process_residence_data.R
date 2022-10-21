@@ -1,5 +1,7 @@
 library(dplyr)
 source("R/functions/clean_gp_res_lsoa.R")
+source("R/functions/clean_gp_res_lsoa_legacy_format.R")
+source("R/functions/is_dir_legacy_format.R")
 
 fpath <- list(
   raw_nhs_month = "data/raw/",
@@ -37,9 +39,17 @@ for(sel_dt in sel_dates){
   #TODO add more robust parsing for the date variable and use it directly
   e_date <- as.Date(paste0(sel_dt, "_01"), "%Y_%m_%d")
 
-  data_lsoa <- clean_gp_res_lsoa(dir_in = paste0(fpath$raw_nhs_month, sel_dt),
-                                 lookup_lsoa_lad,
-                                 e_date)
+  dir_in = paste0(fpath$raw_nhs_month, sel_dt)
+
+  if(is_dir_legacy_format(dir_in)) {
+
+    data_lsoa <- clean_gp_res_lsoa_legacy_format(dir_in, lookup_lsoa_lad, e_date)
+
+  } else {
+
+    data_lsoa <- clean_gp_res_lsoa(dir_in, lookup_lsoa_lad, e_date)
+
+  }
 
   data_lad <- data_lsoa %>%
     group_by(across(-any_of(c("value", "LSOA11CD")))) %>%

@@ -1,4 +1,6 @@
 source("R/functions/clean_gp_sya.R")
+source("R/functions/clean_gp_sya_legacy_format.R")
+source("R/functions/is_dir_legacy_format.R")
 
 fpath <- list(
   raw_nhs_month = "data/raw/",
@@ -25,12 +27,20 @@ for(sel_dt in sel_dates){
   #TODO add more robust parsing for the date variable and use it directly
   e_date <- as.Date(paste0(sel_dt, "_01"), "%Y_%m_%d")
 
-  data_sel_dt <- clean_gp_sya(dir_in = paste0(fpath$raw_nhs_month, sel_dt),
-                              e_date)
+  dir_in = paste0(fpath$raw_nhs_month, sel_dt)
+
+  if(is_dir_legacy_format(dir_in)) {
+
+    data_sel_dt <- clean_gp_sya_legacy_format(dir_in, e_date)
+
+  } else {
+
+    data_sel_dt <- clean_gp_sya(dir_in, e_date)
+
+  }
 
   saveRDS(data_sel_dt,
           paste0(fpath$gp_sya_month, sel_dt, stub_gp_sya))
 
   i <- i + 1
 }
-
