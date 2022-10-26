@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Since 2012, the City Intelligence Unit’s Demography Team made has use of
+Since 2012, the City Intelligence Unit’s Demography Team has used
 extracts of patient register data as part of its ongoing analysis of
 population change. These extracts were provided under license by the NHS
 and consisted of aggregate counts of persons registered with a GP by
