@@ -30,6 +30,9 @@ by age, sex, and local authority of residence are created by a simple
 process of apportioning the data for each GP practice in (2) by the
 distribution for each practice in (1).
 
+Outputs from this process are published on the [London
+Datastore](https://data.london.gov.uk/dataset/patients-registered-at-a-gp-practice)
+
 The underlying data are published on the [NHS Digital
 website](https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice).
 Each month’s extracts are published on their own pages, which usually

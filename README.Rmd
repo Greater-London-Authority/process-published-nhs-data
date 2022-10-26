@@ -28,6 +28,8 @@ In recent years, NHS Digital has regularly published data about the numbers of p
 
 The purpose of the code in this repository is to take these published data and consolidate them into a time series of patient **counts by sex x age x Local Authority District of residence** that can be used as the basis for subsequent demographic analysis. Modelled counts of patients by age, sex, and local authority of residence are created by a simple process of apportioning the data for each GP practice in (2) by the distribution for each practice in (1).
 
+Outputs from this process are published on the [London Datastore](https://data.london.gov.uk/dataset/patients-registered-at-a-gp-practice) 
+
 The underlying data are published on the [NHS Digital website](https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice). Each month's extracts are published on their own pages, which usually follow the naming convention: 
 ```
 .../patients-registered-at-a-gp-practice/<month>-<year>
