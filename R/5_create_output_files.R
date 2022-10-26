@@ -1,4 +1,6 @@
 library(dplyr)
+library(tidyr)
+library(readr)
 source("R/functions/add_persons.R")
 source("R/functions/aggregate_to_region.R")
 
@@ -27,7 +29,8 @@ gp_sya_res_lad <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), rea
   filter(grepl("E0", gss_code)) %>%
   add_persons() %>%
   mutate(value = round(value, 1)) %>%
-  arrange(gss_code, sex, extract_date, age)
+  arrange(gss_code, sex, extract_date, age) %>%
+  select(gss_code, gss_name, geography, measure, extract_date, sex, age, everything())
 
 saveRDS(gp_sya_res_lad, fpath$lad_output_rds)
 
@@ -40,8 +43,8 @@ write_csv(gp_sya_res_lad_wide, fpath$lad_output_csv)
 
 # create aggregations for regions
 gp_sya_res_rgn <- aggregate_to_region(gp_sya_res_lad,
-                                      readRDS(fpath$lookup_lad_rgn)) %>%
-  mutate(geography = "RGN21") %>%
+                                      readRDS(fpath$lookup_lad_rgn),
+                                      "RGN21") %>%
   arrange(gss_code, sex, extract_date, age)
 
 saveRDS(gp_sya_res_rgn, fpath$rgn_output_rds)
@@ -55,8 +58,8 @@ write_csv(gp_sya_res_rgn_wide, fpath$rgn_output_csv)
 
 # create aggregations for ITL2 subregions
 gp_sya_res_itl <- aggregate_to_region(gp_sya_res_lad,
-                                      readRDS(fpath$lookup_lad_itl)) %>%
-  mutate(geography = "ITL221") %>%
+                                      readRDS(fpath$lookup_lad_itl),
+                                      "ITL221") %>%
   arrange(gss_code, sex, extract_date, age)
 
 saveRDS(gp_sya_res_itl, fpath$itl_output_rds)
@@ -70,8 +73,8 @@ write_csv(gp_sya_res_itl_wide, fpath$itl_output_csv)
 
 # create aggregations for England
 gp_sya_res_ctry <- aggregate_to_region(gp_sya_res_lad,
-                                       readRDS(fpath$lookup_lad_ctry)) %>%
-  mutate(geography = "CTRY21") %>%
+                                       readRDS(fpath$lookup_lad_ctry),
+                                       "CTRY21") %>%
   arrange(gss_code, sex, extract_date, age)
 
 saveRDS(gp_sya_res_ctry, fpath$ctry_output_rds)
