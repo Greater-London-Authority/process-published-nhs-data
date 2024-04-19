@@ -13,8 +13,9 @@ calculate_gp_res_props <- function(gp_res, sel_dates){
     complete(nesting(gss_code, gss_name, practice_code, sex), extract_date = sel_dates) %>%
     arrange(extract_date) %>%
     group_by(practice_code, gss_code, gss_name, sex) %>%
-    mutate(value = na.approx(value, rule = 2)) %>%
-    filter(value > 0) %>%
+    mutate(value = na.approx(value, rule = 2)) %>% # this is the line that does the interpolation
+    filter(value > 0,
+           extract_date %in% sel_dates) %>%
     data.frame()
 
   prop_res <- interpolated_gp_res %>%

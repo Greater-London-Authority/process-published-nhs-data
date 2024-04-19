@@ -27,15 +27,7 @@ new_gp_sya_dates <- new_gp_sya_dates[new_gp_sya_dates <= last_res_date] # works 
 sya_yyyy_mm <- new_gp_sya_dates
 sel_dates <- as.Date(paste0(new_gp_sya_dates, "_01"), "%Y_%m_%d")
 
-
-# only calculate new residence proportions
-
-gp_res_start_date <- gp_res_dates[gp_res_dates <= min(sya_yyyy_mm)] %>%
-  max()
-gp_res_dates_needed <- gp_res_dates[gp_res_dates >= gp_res_start_date]
-gp_res_inds <- gp_res_dates %in% gp_res_dates_needed
-
-gp_res_files <- list.files(fpath$gp_lad_month, full.names = TRUE)[gp_res_inds]
+gp_res_files <- list.files(fpath$gp_lad_month, full.names = TRUE)
 gp_res <- lapply(gp_res_files, readRDS)%>%
   bind_rows()
 
