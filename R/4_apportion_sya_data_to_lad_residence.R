@@ -21,7 +21,7 @@ last_res_date <- max(gp_res_dates)
 
 gp_sya_dates <- substr(list.files(fpath$gp_sya_month), 1, 7)
 processed_sya_lad_dates <- substr(list.files(fpath$sya_lad_month), 1, 7)
-new_gp_sya_dates <- gp_sya_dates[!gp_sya_dates %in% processed_sya_lsoa_dates]
+new_gp_sya_dates <- gp_sya_dates[!gp_sya_dates %in% processed_sya_lad_dates]
 new_gp_sya_dates <- new_gp_sya_dates[new_gp_sya_dates <= last_res_date]
 
 sya_yyyy_mm <- new_gp_sya_dates
@@ -64,7 +64,7 @@ for(sel_dt in sya_yyyy_mm){
 
   # apply res proportions to the SYA data to get SYA by res
   gp_age_res_dt <- gp_sya_dt %>%
-    left_join(prop_res_dt, by = c("practice_code", "sex")) %>%
+    left_join(prop_res_dt, by = c("practice_code", "sex"), relationship = "many-to-many") %>%
     mutate(value = value * prop_res) %>%
     select(-prop_res) %>%
     filter(value > 0) %>%
