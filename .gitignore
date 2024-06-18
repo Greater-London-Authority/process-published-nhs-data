@@ -47,3 +47,6 @@ rsconnect/
 data/*
 !data/README*
 outputs/*
+
+# Analysis code and outputs
+analysis/*
