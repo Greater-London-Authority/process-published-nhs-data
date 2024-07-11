@@ -22,7 +22,7 @@ clean_gp_res_lsoa_legacy_format <- function(dir_in, lookup_lsoa_lad, e_date) {
 
   out_df <- gp_res %>%
     rename(any_of(name_lookup)) %>%
-    select(practice_code, LSOA11CD, male, female) %>%
+    select(practice_code, LSOA_CODE, male, female) %>%
     pivot_longer(cols = c("male", "female"), names_to = "sex", values_to = "value") %>%
     left_join(lookup_lsoa_lad, by = "LSOA_CODE") %>%
     mutate(extract_date = e_date)
