@@ -33,7 +33,7 @@ for(sel_dt in sel_dates){
   download_nhs_month(sel_dt,
                      dir_save,
                      base_url = "https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/",
-                     link_pattern = "gp-reg-pat-prac-sing-age-female|gp-reg-pat-prac-sing-age-male|gp-reg-pat-prac-lsoa-male|gp-reg-pat-prac-lsoa-female|gp-reg-pat-prac-lsoa-all-females-males|gp_syoa|gp-reg-patients-prac-sing-year-age|lsoa-alt-format-tall|gp-reg-patients-lsoa-alt-tall|lsoa-alt-tall",
+                     link_pattern = "gp-reg-pat-prac-sing-age-female|gp-reg-pat-prac-sing-age-male|gp-reg-pat-prac-lsoa-male|gp-reg-pat-prac-lsoa-2011-male-female|gp-reg-pat-prac-lsoa-2021-male-female|gp-reg-pat-prac-lsoa-female|gp-reg-pat-prac-lsoa-all-females-males|gp_syoa|gp-reg-patients-prac-sing-year-age|lsoa-alt-format-tall|gp-reg-patients-lsoa-alt-tall|lsoa-alt-tall",
                      pg_nm_replace = replacement_page_names)
 
   extract_delete_zips(sel_dt, dir_save)

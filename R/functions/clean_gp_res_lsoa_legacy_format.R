@@ -14,7 +14,7 @@ clean_gp_res_lsoa_legacy_format <- function(dir_in, lookup_lsoa_lad, e_date) {
                    `female` = "female_patients",
                    `male` = "male patients",
                    `female` = "female patients",
-                   `LSOA11CD` = "lsoa_code")
+                   `LSOA_CODE` = "lsoa_code")
 
   gp_res <- read_csv(fp_gp_lsoa, show_col_types = FALSE)
 
@@ -24,7 +24,7 @@ clean_gp_res_lsoa_legacy_format <- function(dir_in, lookup_lsoa_lad, e_date) {
     rename(any_of(name_lookup)) %>%
     select(practice_code, LSOA11CD, male, female) %>%
     pivot_longer(cols = c("male", "female"), names_to = "sex", values_to = "value") %>%
-    left_join(lookup_lsoa_lad, by = "LSOA11CD") %>%
+    left_join(lookup_lsoa_lad, by = "LSOA_CODE") %>%
     mutate(extract_date = e_date)
 
   return(out_df)
