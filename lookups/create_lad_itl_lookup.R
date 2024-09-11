@@ -1,7 +1,6 @@
 library(tidyverse)
-library(readxl)
 
-fpath <- list(raw_lookup_lad_itl = "data/lookups/LAD21_LAU121_ITL321_ITL221_ITL121_UK_LU.xlsx",
+fpath <- list(raw_lookup_lad_itl = "data/lookups/Local_Authority_District_(April_2023)_to_LAU1_to_ITL3_to_ITL2_to_ITL1_(January_2021)Lookup.csv",
               lookup_lad_itl = "data/lookups/lookup_lad_itl.rds")
 
 # note that subregions get labelled as regions here
@@ -9,8 +8,8 @@ fpath <- list(raw_lookup_lad_itl = "data/lookups/LAD21_LAU121_ITL321_ITL221_ITL1
 
 if(file.exists(fpath$raw_lookup_lad_itl)) {
 
-lookup_lad_itl <- read_excel(fpath$raw_lookup_lad_itl) %>%
-  select(gss_code = LAD21CD, gss_name = LAD21NM, RGNCD = ITL221CD, RGNNM = ITL221NM) %>%
+lookup_lad_itl <- read_csv(fpath$raw_lookup_lad_itl) %>%
+  select(gss_code = LAD23CD, gss_name = LAD23NM, RGNCD = ITL221CD, RGNNM = ITL221NM) %>%
   distinct()
 
 saveRDS(lookup_lad_itl, fpath$lookup_lad_itl)

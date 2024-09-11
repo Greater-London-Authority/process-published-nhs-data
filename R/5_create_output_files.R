@@ -1,6 +1,7 @@
 library(dplyr)
 library(tidyr)
 library(readr)
+library(gsscoder)
 source("R/functions/add_persons.R")
 source("R/functions/aggregate_to_region.R")
 
@@ -20,9 +21,12 @@ fpath <- list(
   lookup_lad_ctry = "lookups/lookup_lad_ctry.rds"
 )
 
+lookup_lad23_names <- readRDS(fpath$lookup_lad_ctry) %>%
+  select(gss_code, gss_name)
+
 if(!dir.exists(fpath$processed_data)) dir.create(fpath$processed_data, recursive = TRUE)
 
-gp_sya_res_lad <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), readRDS) %>%
+gp_sya_res_lad21 <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), readRDS) %>%
   bind_rows() %>%
   mutate(measure = "gp_count",
          geography = "LAD21") %>%
@@ -31,6 +35,13 @@ gp_sya_res_lad <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), rea
   mutate(value = round(value, 1)) %>%
   arrange(gss_code, sex, extract_date, age) %>%
   select(gss_code, gss_name, geography, measure, extract_date, sex, age, everything())
+
+gp_sya_res_lad <- gp_sya_res_lad21 %>%
+  select(-c(geography, gss_name)) %>%
+  recode_gss(recode_from_year = 2021,
+             recode_to_year = 2023) %>%
+  left_join(lookup_lad23_names, by = "gss_code") %>%
+  mutate(geography = "LAD23")
 
 saveRDS(gp_sya_res_lad, fpath$lad_output_rds)
 
@@ -44,7 +55,7 @@ write_csv(gp_sya_res_lad_wide, fpath$lad_output_csv)
 # create aggregations for regions
 gp_sya_res_rgn <- aggregate_to_region(gp_sya_res_lad,
                                       readRDS(fpath$lookup_lad_rgn),
-                                      "RGN21") %>%
+                                      "RGN23") %>%
   arrange(gss_code, sex, extract_date, age)
 
 saveRDS(gp_sya_res_rgn, fpath$rgn_output_rds)
@@ -74,7 +85,7 @@ write_csv(gp_sya_res_itl_wide, fpath$itl_output_csv)
 # create aggregations for England
 gp_sya_res_ctry <- aggregate_to_region(gp_sya_res_lad,
                                        readRDS(fpath$lookup_lad_ctry),
-                                       "CTRY21") %>%
+                                       "CTRY23") %>%
   arrange(gss_code, sex, extract_date, age)
 
 saveRDS(gp_sya_res_ctry, fpath$ctry_output_rds)
