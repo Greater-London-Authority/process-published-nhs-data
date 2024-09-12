@@ -1,7 +1,7 @@
 library(tidyverse)
 
 fpath <- list(raw_lookup_lad_ctry = "data/lookups/Local_Authority_District_to_Country_(April_2023)_Lookup_in_the_UK.csv",
-              lookup_lad_ctry = "data/intermediate/lookup_lad_ctry.rds")
+              lookup_lad_ctry = "lookups/lookup_lad_ctry.rds")
 
 if(file.exists(fpath$raw_lookup_lad_ctry)) {
 

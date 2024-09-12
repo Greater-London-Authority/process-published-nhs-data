@@ -19,10 +19,12 @@ if(!dir.exists(fpath$sya_lad_month)) dir.create(fpath$sya_lad_month, recursive =
 gp_res_dates <- substr(list.files(fpath$gp_lad_month), 1, 7)
 last_res_date <- max(gp_res_dates)
 
+#TODO review this process and ensure it is acting as it should
 gp_sya_dates <- substr(list.files(fpath$gp_sya_month), 1, 7)
+potential_to_change_gp_sya_dates <- gp_sya_dates[gp_sya_dates >= last_res_date]
 processed_sya_lad_dates <- substr(list.files(fpath$sya_lad_month), 1, 7)
-new_gp_sya_dates <- gp_sya_dates[!gp_sya_dates %in% processed_sya_lad_dates]
-new_gp_sya_dates <- new_gp_sya_dates[new_gp_sya_dates <= last_res_date]
+new_gp_sya_dates <- unique(c(gp_sya_dates[!gp_sya_dates %in% processed_sya_lad_dates], potential_to_change_gp_sya_dates))
+# new_gp_sya_dates <- new_gp_sya_dates[new_gp_sya_dates <= last_res_date]
 
 sya_yyyy_mm <- new_gp_sya_dates
 sel_dates <- as.Date(paste0(new_gp_sya_dates, "_01"), "%Y_%m_%d")
