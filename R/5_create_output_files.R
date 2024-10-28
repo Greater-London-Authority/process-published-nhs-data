@@ -29,7 +29,7 @@ if(!dir.exists(fpath$processed_data)) dir.create(fpath$processed_data, recursive
 gp_sya_res_lad21 <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), readRDS) %>%
   bind_rows() %>%
   mutate(measure = "gp_count",
-         geography = "LAD21") %>%
+         geography = "LAD22") %>%
   filter(grepl("E0", gss_code)) %>%
   add_persons() %>%
   mutate(value = round(value, 1)) %>%
@@ -38,7 +38,7 @@ gp_sya_res_lad21 <- lapply(list.files(fpath$sya_lad_month, full.names = TRUE), r
 
 gp_sya_res_lad <- gp_sya_res_lad21 %>%
   select(-c(geography, gss_name)) %>%
-  recode_gss(recode_from_year = 2021,
+  recode_gss(recode_from_year = 2022,
              recode_to_year = 2023) %>%
   left_join(lookup_lad23_names, by = "gss_code") %>%
   mutate(geography = "LAD23")
@@ -46,6 +46,7 @@ gp_sya_res_lad <- gp_sya_res_lad21 %>%
 saveRDS(gp_sya_res_lad, fpath$lad_output_rds)
 
 gp_sya_res_lad_wide <- gp_sya_res_lad %>%
+  mutate(value = round(value, 1)) %>%
   pivot_wider(names_from = "age",
               values_from = "value",
               names_prefix = "age_")
@@ -61,6 +62,7 @@ gp_sya_res_rgn <- aggregate_to_region(gp_sya_res_lad,
 saveRDS(gp_sya_res_rgn, fpath$rgn_output_rds)
 
 gp_sya_res_rgn_wide <- gp_sya_res_rgn %>%
+  mutate(value = round(value, 1)) %>%
   pivot_wider(names_from = "age",
               values_from = "value",
               names_prefix = "age_")
@@ -76,6 +78,7 @@ gp_sya_res_itl <- aggregate_to_region(gp_sya_res_lad,
 saveRDS(gp_sya_res_itl, fpath$itl_output_rds)
 
 gp_sya_res_itl_wide <- gp_sya_res_itl %>%
+  mutate(value = round(value, 1)) %>%
   pivot_wider(names_from = "age",
               values_from = "value",
               names_prefix = "age_")
@@ -91,6 +94,7 @@ gp_sya_res_ctry <- aggregate_to_region(gp_sya_res_lad,
 saveRDS(gp_sya_res_ctry, fpath$ctry_output_rds)
 
 gp_sya_res_ctry_wide <- gp_sya_res_ctry %>%
+  mutate(value = round(value, 1)) %>%
   pivot_wider(names_from = "age",
               values_from = "value",
               names_prefix = "age_")
