@@ -52,7 +52,7 @@ for(sel_dt in sel_dates){
   }
 
   data_lad <- data_lsoa %>%
-    group_by(across(-any_of(c("value", "LSOA11CD")))) %>%
+    group_by(across(-any_of(c("value", "LSOA_CODE")))) %>%
     summarise(value = sum(value), .groups = "drop")
 
   saveRDS(data_lsoa,

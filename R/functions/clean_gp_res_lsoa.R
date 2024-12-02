@@ -19,11 +19,11 @@ clean_gp_res_lsoa <- function(dir_in,
                       read_csv(fp_gp_lsoa_male, show_col_types = FALSE)) %>%
     rename(any_of(name_lookup)) %>%
     select(practice_code = PRACTICE_CODE,
-           LSOA11CD = LSOA_CODE,
+           LSOA_CODE,
            sex = SEX,
            value = `Number of Patients`) %>%
     mutate(sex = tolower(sex)) %>%
-    left_join(lookup_lsoa_lad, by = "LSOA11CD") %>%
+    left_join(lookup_lsoa_lad, by = "LSOA_CODE") %>%
     mutate(extract_date = e_date)
 
   return(gp_res)
